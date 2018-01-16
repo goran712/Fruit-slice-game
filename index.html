@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <title>Fruit Game</title>
+    <style>
+
+        html{
+            height: 100%;
+            background: radial-gradient(circle, #fff, #ccc);
+        }
+
+        #container{
+            height: 580px;
+            width: 750px;
+            background-color: #4DCEF1;
+            margin: 10px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 4px 4px 10px 0px;
+            position: relative;
+        }
+
+        #score{
+            background-color: #faf700;
+            color: #0A1B32;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 90%;
+            padding: 10px;
+            position: absolute;
+            left: 650px;
+            border-radius: 5px;
+            box-shadow: 4px 4px 10px 0px;
+        }
+        #correct{
+            background-color: #34A724;
+            padding: 10px;
+            position: absolute;
+            left: 295px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-family: sans-serif;
+            display: none;
+            box-shadow: 4px 4px 10px 0px;
+            -webkit-box-shadow: 4px 4px 10px 0px;
+            -moz-box-shadow: 4px 4px 10px 0px;
+
+        }
+        #wrong{
+            background-color: red;
+            padding: 10px;
+            position: absolute;
+            left: 265px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-family: sans-serif;
+            display: none;
+            box-shadow: 4px 4px 10px 0px;
+            -webkit-box-shadow: 4px 4px 10px 0px;
+            -moz-box-shadow: 4px 4px 10px 0px;
+
+        }
+
+        #fruitContainer{
+            background-color: white;
+            width: 650px;
+            height: 350px;
+            margin: 70px auto 10px auto;
+            box-shadow: 4px 4px 10px 0px #407B78;
+            font-size: 100px;
+            text-align: center;
+            font-family: cursive, sans-serif;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #instruction{
+            background-color: #854598;
+            width: 500px;
+            height: 50px;
+            font-family: cursive, sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            margin: 10px auto 10px auto;
+            line-height: 45px;
+            box-shadow: 4px 4px 10px 0px #407B78;
+            -moz-box-shadow: 4px 4px 10px 0px #407B78;
+            -webkit-box-shadow: 4px 4px 10px 0px #407B78;
+            border-radius: 5px;
+        }
+
+        #choices{
+            width: 500px;
+            height: 100px;
+            margin: 10px auto 10px auto;
+        }
+        .box{
+            width: 86px;
+            height: 86px;
+            background-color: white;
+            float: left;
+            margin-right: 52px;
+            cursor: pointer;
+            box-shadow: 4px 4px 10px 0px #407B78;
+            -webkit-box-shadow: 4px 4px 10px 0px #407B78;
+            -moz-box-shadow: 4px 4px 10px 0px #407B78;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 80px;
+            font-family: cursive, sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+            position: relative;
+            transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+        }
+        .last{
+            margin-right: 0px;
+        }
+        .box:hover, #startreset:hover{
+            background-color: #ff7ae4;
+            color: white;
+        }
+        .box:active, #startreset:active{
+            top: 4px;
+            box-shadow: 0px 0px;
+
+        }
+        #startreset{
+            background-color: #43cf2e;
+            width:120px;
+            margin: 0px auto;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-family: sans-serif;
+            box-shadow: 4px 4px 10px 0px;
+            -webkit-box-shadow: 4px 4px 10px 0px;
+            -moz-box-shadow: 4px 4px 10px 0px;
+            transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+        }
+
+        #trialLeft{
+            width: auto;
+            height: 17px;
+            position: absolute;
+            background-color: #f0ffc5;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: 90%;
+            /*bottom: 33px;*/
+            /*left: 50px;*/
+            box-shadow: 4px 4px 10px 0px white;
+            -webkit-box-shadow: 4px 4px 10px 0px white;
+            -moz-box-shadow: 4px 4px 10px 0px white;
+            display: none;
+        }
+
+        #gameover{
+            width: 500px;
+            height: 220px;
+            padding: 0px;
+            background: linear-gradient(#FFB3D0, #e731e7);
+            font-family: cursive;
+            position: absolute;
+            top: 155px;
+            left: 145px;
+            color: white;
+            font-size: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            z-index: 1;
+            display: none;
+            box-shadow: 4px 4px 10px 0px white;
+            -webkit-box-shadow: 4px 4px 10px 0px white;
+            -moz-box-shadow: 4px 4px 10px 0px white;
+            border-radius: 5px;
+
+        }
+        h2{
+            margin-top: 0px;
+            box-shadow: 4px 4px 10px 0px white;
+            -webkit-box-shadow: 4px 4px 10px 0px white;
+            -moz-box-shadow: 4px 4px 10px 0px white;
+            border-radius: 5px;
+        }
+        .life{
+            width: 15px;
+            height: 15px;
+            padding: 2px 5px;
+        }
+
+        .fruit{
+            display: none;
+            position: absolute;
+        }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="trialLeft"></div>
+        <div id="score">Rezultat: <span id="scorevalue">0</span></div>
+        <div id="correct">Bravo!</div>
+        <div id="wrong">Pokušaj ponovo :))</div>
+        <div id="fruitContainer">
+            <img id="fruit1" class="fruit">
+        </div>
+        <div id="instruction">Seci voćku</div>
+
+        <div id="startreset">Startuj igru</div>
+
+        <div id="gameover"></div>
+
+        <audio id="sliceSound" src="audio/slicefruit.mp3"></audio>
+        <audio src="audio/slicefruit.ogg"></audio>
+
+        
+
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="jquery.js"></script>
+</body>
+</html>
