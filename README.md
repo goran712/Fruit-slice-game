@@ -1,2 +1,2 @@
-# newsite
-test for new website
+# Fruit slice game
+Built with HTML5, CSS3 and jQuery.
